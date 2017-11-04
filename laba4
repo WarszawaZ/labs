@@ -1,0 +1,24 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Text.RegularExpressions;
+
+namespace lab4trpo
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            FileStream laba4 = new FileStream("G:\\laba4.txt", FileMode.Open, FileAccess.Read);
+            foreach (string str in File.ReadLines(@"G:\laba4.txt"))
+            {
+                Regex reg = new Regex(@"^(((0[1-9]|[12]\d|3[01])\.(0[13578]|1[02])\.((19|[2-9]\d)\d{2}))|((0[1-9]|[12]\d|30)\.(0[13456789]|1[012])\.((19|[2-9]\d)\d{2}))|((0[1-9]|1\d|2[0-8])\.02\.((19|[2-9]\d)\d{2}))|(29\.02\.((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))))$");
+                MatchCollection mm = reg.Matches(str);
+                if (mm.Count > 0)
+                {
+                    foreach (Match mm1 in mm)
+                        Console.WriteLine(mm1.Value);
+                }
+            }
+        }}
+}
